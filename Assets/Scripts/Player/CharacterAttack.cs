@@ -4,7 +4,7 @@ using UnityEngine;
 public class CharacterAttack : MonoBehaviour
 {
     [SerializeField] ContactFilter2D enemyContactFilter;
-    [Header("Phát hiện phạm vi tấn công")]
+    [Header("攻击范围检测")]
     [SerializeField] GameObject slash;
     [SerializeField] GameObject altSlash;
     [SerializeField] GameObject downSlash;
