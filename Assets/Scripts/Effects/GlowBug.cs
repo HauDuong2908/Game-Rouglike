@@ -5,7 +5,7 @@ using UnityEngine;
 public class GlowBug : MonoBehaviour
 {
     public Vector2 moveSpot;
-    [Header("tham số")]
+    [Header("参数")]
     public float speed;
     [SerializeField] int minX;
     [SerializeField] int maxX;

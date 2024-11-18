@@ -14,7 +14,7 @@ public class FirstLandingBehaviour : StateMachineBehaviour
             FindObjectOfType<CharacterAudio>().Play(CharacterAudio.AudioType.HardLanding, true);
         else
             sound.Play(CharacterAudio.AudioType.HardLanding, true);
-        // rung màn hình
+        // 相机震动
         var shakePreset = ProCamera2DShake.Instance.ShakePresets[0];
         ProCamera2DShake.Instance.Shake(shakePreset);
         GameObject flock = GameObject.Find("Flock");
