@@ -9,7 +9,7 @@ public class HardLandBehaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {        
-        // 相机震动
+        // rung màn hình
         var shakePreset = ProCamera2DShake.Instance.ShakePresets[2];
         ProCamera2DShake.Instance.Shake(shakePreset);
         if (sound == null)

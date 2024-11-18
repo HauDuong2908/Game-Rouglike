@@ -44,10 +44,10 @@ public class Enemy : Breakable
 
     protected virtual void DetectCollisionEnter2D(Collision2D collision)
     {
-        // 如果碰撞到敌人
+        // Nếu va chạm với kẻ thù
         if (collision.gameObject.layer == LayerMask.NameToLayer("Hero Detector"))
         {
-            // 无敌状态，屏蔽碰撞执行语句
+            // Trạng thái bất xâm phạm, các câu lệnh thực hiện va chạm
             StartCoroutine(character.TakeDamage(this));
             FindObjectOfType<HitPause>().Stop(0.5f);
         }

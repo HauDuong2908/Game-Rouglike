@@ -194,7 +194,7 @@ public class CharacterController2D : MonoBehaviour
                 {
                     return;
                 }
-                // 跳跃键被按下
+                // Phím nhảy được nhấn
                 jumpInput = true;
             }
         }
@@ -236,7 +236,7 @@ public class CharacterController2D : MonoBehaviour
         }
         else
         {
-            // 如果下方碰撞到地形，则跳跃已完成，人物已在地面上
+            // Nếu phía dưới va chạm với địa hình thì bước nhảy đã hoàn thành và nhân vật ở trên mặt đất
             if ((collision.gameObject.layer == LayerMask.NameToLayer("Terrain") || collision.gameObject.layer == LayerMask.NameToLayer("Soft Terrain"))
                 && collision.contacts[0].normal == Vector2.up
                 && !isOnGround)
@@ -247,7 +247,7 @@ public class CharacterController2D : MonoBehaviour
                 isFalling = false;
                 effecter.DoEffect(CharacterEffect.EffectType.FallTrail, true);
             }
-            // 如果上方碰撞到地形，则取消长按跳跃
+            // Nếu đỉnh va chạm với địa hình, thao tác nhấn và giữ để nhảy sẽ bị hủy.
             else if ((collision.gameObject.layer == LayerMask.NameToLayer("Terrain")
                 || collision.gameObject.layer == LayerMask.NameToLayer("Soft Terrain"))
                 && collision.contacts[0].normal == Vector2.down && isJumping)
@@ -411,7 +411,7 @@ public class CharacterController2D : MonoBehaviour
                 }
                 else
                 {
-                    // 如果垂直方向键没有被按下
+                    // Nếu không nhấn phím mũi tên dọc
                     slashCount++;
                     switch (slashCount)
                     {
@@ -448,7 +448,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
     /// <summary>
-    /// 检测范围并攻击
+    /// Phát hiện phạm vi và tấn công
     /// </summary>
     private void SlashAndDetect(CharacterAttack.AttackType attackType)
     {
@@ -456,7 +456,7 @@ public class CharacterController2D : MonoBehaviour
         attacker.Play(attackType, ref colliders);
         bool hasEnemy = false;
         bool hasDamageAll = false;
-        // 检测是否攻击到敌人
+        // Phát hiện xem kẻ địch có bị tấn công hay không
         foreach (Collider2D c in colliders)
         {
             if (c.gameObject.layer == LayerMask.NameToLayer("Enemy Detector"))
@@ -465,7 +465,7 @@ public class CharacterController2D : MonoBehaviour
                 break;
             }
         }
-        // 检测是否攻击到陷阱
+        // Phát hiện xem bẫy có bị tấn công hay không
         foreach (Collider2D c in colliders)
         {
             if (c.gameObject.layer == LayerMask.NameToLayer("Damage All"))
@@ -525,7 +525,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
     /// <summary>
-    /// 受到伤害
+    /// nhận damage
     /// </summary>
     /// <param name="enemy"></param>
     /// <returns></returns>
