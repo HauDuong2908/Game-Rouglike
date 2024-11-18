@@ -13,28 +13,28 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Terrain
   - 
   - 
   - 
   - 
   - Hero Detector
   - 
+  - Enemy Detector
+  - 
+  - 
+  - Particle
   - 
   - 
   - 
   - 
   - 
   - 
+  - Soft Terrain
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - GeoDetector
   - 
   - 
   m_SortingLayers:
@@ -43,4 +43,7 @@ TagManager:
     locked: 0
   - name: Mid BG
     uniqueID: 395208761
+    locked: 0
+  - name: Player
+    uniqueID: 3013902187
     locked: 0
