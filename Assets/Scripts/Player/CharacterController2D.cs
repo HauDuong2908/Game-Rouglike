@@ -162,6 +162,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump_started(InputAction.CallbackContext context)
     {
+        Debug.Log("Jump_started");
         if (data.GetDeadStatement())
             return;
         if (isSliding && !isOnGround)
@@ -202,6 +203,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump_performed(InputAction.CallbackContext context)
     {
+        Debug.Log("Jump_performed");
         JumpCancel();
     }
 
