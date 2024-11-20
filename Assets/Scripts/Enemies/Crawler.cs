@@ -98,7 +98,7 @@ public class Crawler : Enemy
 
     void Flip()
     {
-        // Flip
+        // 翻转图像
         Vector3 vector = transform.localScale;
         vector.x = vector.x * -1;
         transform.localScale = vector;
@@ -107,7 +107,7 @@ public class Crawler : Enemy
     public override void Hurt(int damage, Transform attackPosition)
     {
         base.Hurt(damage, attackPosition);
-        // hoạt anh bị thương
+        // 受伤动画
         Vector2 vector = transform.position - attackPosition.position;
         StartCoroutine(DelayHurt(vector));
         hit.PlayHitAnimation();
@@ -115,7 +115,7 @@ public class Crawler : Enemy
 
     IEnumerator DelayHurt(Vector2 vector)
     {
-        // âm thanh damage 
+        // 播放打击声音
         audioPlayer.PlayOneShot(hited);
         rb.velocity = Vector2.zero;
         forceMovement = false;

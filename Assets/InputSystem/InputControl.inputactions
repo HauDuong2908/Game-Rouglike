@@ -11,7 +11,8 @@
                     "id": "d7731ad6-68e2-48ff-8a29-95ed1999eccf",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -19,7 +20,8 @@
                     "id": "fcb8dfea-32ea-4ec1-9135-9676e908c50e",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold(duration=0.35,pressPoint=0.35)"
+                    "interactions": "Hold(duration=0.35,pressPoint=0.35)",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Attack",
@@ -27,14 +29,15 @@
                     "id": "848baa89-546b-44f9-a45a-ba78c5ce5469",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "0df34c39-558c-4eb6-9f72-c96de7296317",
-                    "path": "<Keyboard>/z",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -100,7 +103,7 @@
                 {
                     "name": "",
                     "id": "a696f2dd-23d9-47f9-9567-d52d856a22fc",
-                    "path": "<Keyboard>/x",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -120,7 +123,8 @@
                     "id": "59377ec7-e0e0-4322-9ee4-6c8953042ded",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Submit",
@@ -128,7 +132,8 @@
                     "id": "78e18450-3738-4f39-a1aa-e8756f536567",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Cancel",
@@ -136,7 +141,8 @@
                     "id": "73360620-1bab-4b74-980f-554a1e586579",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
