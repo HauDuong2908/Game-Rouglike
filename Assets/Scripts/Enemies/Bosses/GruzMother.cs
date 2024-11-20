@@ -209,14 +209,14 @@ public class GruzMother : Enemy
             }
         }
 
-        // Số lần va chạm được đặt lại về 0
+        // 冲撞次数归零
         crashCount = 0;
-        // số lần va chạm
+        // 冲撞计数
         crashCount++;
-        // Đặt điểm đến
+        // 设定目的地
         agent.SetDestination(crashPoints[currentCrashPoint].position);
         agent.maxSpeed = 50;
-        // Thứ tự va chạm được xác định dựa vào vị trí tương đối trục hoành của nhân vật.
+        // 根据角色横轴相对方位，决定冲撞顺序
         if (player.position.x > transform.position.x)
         {
             isDesc = false;
@@ -243,7 +243,7 @@ public class GruzMother : Enemy
             SwitchState(EnemyState.FLY);
             return;
         }
-        // Xác định điểm va chạm tiếp theo theo thứ tự hoặc thứ tự ngược lại
+        // 根据顺序或倒序决定下次冲撞点
         if (isDesc)
         {
             currentCrashPoint--;
@@ -282,7 +282,7 @@ public class GruzMother : Enemy
         }
         animator.SetTrigger("Attack");
         effectAudio.PlayOneShot(wallHit);
-        // Máy ảnh rung
+        // 抖动相机
         CameraShake();
         isHitWall = true;
     }
@@ -340,7 +340,7 @@ public class GruzMother : Enemy
 
     void Flip()
     {
-        // lật hình ảnh
+        // 翻转图像
         Vector3 vector = transform.localScale;
         vector.x = vector.x * -1;
         transform.localScale = vector;
@@ -380,7 +380,7 @@ public class GruzMother : Enemy
 
     public void CameraShake()
     {
-        // rung máy
+        // 相机震动
         var shakePreset = ProCamera2DShake.Instance.ShakePresets[2];
         ProCamera2DShake.Instance.Shake(shakePreset);
     }
@@ -488,9 +488,10 @@ public class GruzMother : Enemy
 
     protected override void DetectCollisionEnter2D(Collision2D collision)
     {
-        // Nếu bạn va chạm với kẻ thù
+        // 如果碰撞到敌人
         if (collision.gameObject.layer == LayerMask.NameToLayer("Hero Detector"))
         {
+            // 无敌状态，屏蔽碰撞执行语句
             StartCoroutine(character.TakeDamage(this));
             FindObjectOfType<HitPause>().Stop(0.5f);
         }

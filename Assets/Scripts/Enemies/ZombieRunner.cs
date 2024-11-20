@@ -165,7 +165,7 @@ public class ZombieRunner : Enemy
         animator.SetBool("Attack", isAttack);
         audioSource.PlayOneShot(hited);
         hit.PlayHitAnimation();
-        // Xác định vị trí ký tự
+        // 判断角色位置
         Vector2 vector = transform.position - player.position;
         rb.velocity = Vector2.zero;
         if (vector.x > 0)
@@ -194,7 +194,7 @@ public class ZombieRunner : Enemy
 
     void Flip()
     {
-        // Flip
+        // 翻转图像
         Vector3 vector = transform.localScale;
         vector.x = vector.x * -1;
         transform.localScale = vector;
