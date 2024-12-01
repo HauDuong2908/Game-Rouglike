@@ -103,18 +103,7 @@
                 {
                     "name": "",
                     "id": "a696f2dd-23d9-47f9-9567-d52d856a22fc",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "70328d6e-0880-44e9-a360-37289425f2ed",
-                    "path": "<Keyboard>/x",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -171,7 +160,7 @@
                 {
                     "name": "up",
                     "id": "1228b29a-cc00-493d-845b-e75767608fe8",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -182,7 +171,7 @@
                 {
                     "name": "down",
                     "id": "9d1a92a6-9282-45f5-9640-a28e8770d759",
-                    "path": "<Keyboard>/downArrow",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -193,7 +182,7 @@
                 {
                     "name": "left",
                     "id": "c4b5478b-356e-442a-b452-b40dfac2e133",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -204,7 +193,7 @@
                 {
                     "name": "right",
                     "id": "af1b1ca0-d2b6-4d07-ac3b-3e6792819647",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
