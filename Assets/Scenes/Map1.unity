@@ -21377,7 +21377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1394947648161532358, guid: bd589adf448681c498edcb5a89b9ba8a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.9
+      value: 23.58
       objectReference: {fileID: 0}
     - target: {fileID: 1394947648161532358, guid: bd589adf448681c498edcb5a89b9ba8a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21784,14 +21784,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196764972}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.053976905, y: -0, z: -0, w: 0.9985422}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.8, y: 2.54, z: -27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1138555696}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 6.188, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1196764974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21950,9 +21950,9 @@ MonoBehaviour:
   FollowHorizontal: 1
   HorizontalFollowSmoothness: 0.15
   FollowVertical: 1
-  VerticalFollowSmoothness: 0.05
+  VerticalFollowSmoothness: 0.15
   OffsetX: 0
-  OffsetY: 1
+  OffsetY: 0
   IsRelativeOffset: 1
   ZoomWithFOV: 0
   IgnoreTimeScale: 0
@@ -22004,8 +22004,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 26
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 7
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -57318,7 +57318,7 @@ Transform:
   m_GameObject: {fileID: 2104501153}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 20.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
