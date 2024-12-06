@@ -49,7 +49,7 @@ public class Buzzer : Enemy
 
     void Flip()
     {
-        // 翻转图像
+        // hiệu ứng lật hình ảnh
         Vector3 vector = transform.localScale;
         vector.x = vector.x * -1;
         transform.localScale = vector;
@@ -179,8 +179,9 @@ public class Buzzer : Enemy
     }
     private void EnterHurtState()
     {
+        // Hiển thị animation nhận sát thương.
         hit.PlayHitAnimation();
-        // 判断角色位置
+        // Xác định hướng của người chơi so với đối tượng.
         Vector2 vector = transform.position - player.position;
         animator.SetTrigger("Hurt");
         rb.velocity = Vector2.zero;
