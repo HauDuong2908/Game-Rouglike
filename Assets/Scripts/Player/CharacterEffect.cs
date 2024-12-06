@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterEffect : MonoBehaviour
 {
-    [Header("粒子系统")]
+    [Header("hệ thống Partical")]
     [SerializeField] ParticleSystem doubleJump;
     [SerializeField] ParticleSystem fallTrail;
     [SerializeField] ParticleSystem wallSlideDust;

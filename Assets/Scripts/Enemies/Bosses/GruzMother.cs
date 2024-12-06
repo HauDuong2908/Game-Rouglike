@@ -209,14 +209,14 @@ public class GruzMother : Enemy
             }
         }
 
-        // 冲撞次数归零
+        // Số lần va chạm được đặt lại về 0
         crashCount = 0;
-        // 冲撞计数
+        // số lần va chạm
         crashCount++;
-        // 设定目的地
+        // Đặt điểm đến
         agent.SetDestination(crashPoints[currentCrashPoint].position);
         agent.maxSpeed = 50;
-        // 根据角色横轴相对方位，决定冲撞顺序
+        // Trình tự va chạm được xác định dựa trên vị trí tương đối trục hoành của nhân vật.
         if (player.position.x > transform.position.x)
         {
             isDesc = false;
@@ -243,7 +243,7 @@ public class GruzMother : Enemy
             SwitchState(EnemyState.FLY);
             return;
         }
-        // 根据顺序或倒序决定下次冲撞点
+        // Xác định điểm va chạm tiếp theo theo thứ tự hoặc thứ tự ngược lại
         if (isDesc)
         {
             currentCrashPoint--;
@@ -282,7 +282,7 @@ public class GruzMother : Enemy
         }
         animator.SetTrigger("Attack");
         effectAudio.PlayOneShot(wallHit);
-        // 抖动相机
+        // Hiệu ứng rung ảnh
         CameraShake();
         isHitWall = true;
     }
@@ -340,7 +340,7 @@ public class GruzMother : Enemy
 
     void Flip()
     {
-        // 翻转图像
+        // Hiệu ứng lật
         Vector3 vector = transform.localScale;
         vector.x = vector.x * -1;
         transform.localScale = vector;
@@ -380,7 +380,7 @@ public class GruzMother : Enemy
 
     public void CameraShake()
     {
-        // 相机震动
+        // hiệu ứng rung máy.
         var shakePreset = ProCamera2DShake.Instance.ShakePresets[2];
         ProCamera2DShake.Instance.Shake(shakePreset);
     }
@@ -488,10 +488,14 @@ public class GruzMother : Enemy
 
     protected override void DetectCollisionEnter2D(Collision2D collision)
     {
-        // 如果碰撞到敌人
+        // Nếu bạn va chạm với kẻ thù
+            // - Gây sát thương cho nhân vật.
+            // - Kích hoạt hiệu ứng tạm dừng (HitPause) để tạo cảm giác va chạm mạnh mẽ hơn.
         if (collision.gameObject.layer == LayerMask.NameToLayer("Hero Detector"))
         {
-            // 无敌状态，屏蔽碰撞执行语句
+        // Khi nhân vật đã chết và va chạm với địa hình:
+            // - Vô hiệu hóa ảnh hưởng vật lý và collider.
+            // - Kích hoạt animation "DeadOnGround".
             StartCoroutine(character.TakeDamage(this));
             FindObjectOfType<HitPause>().Stop(0.5f);
         }
