@@ -12,7 +12,7 @@ public class FallingBehaviour : StateMachineBehaviour
         character = FindObjectOfType<CharacterController2D>();
     }
 
-    // OnStateEnter được gọi khi quá trình chuyển đổi bắt đầu và máy trạng thái bắt đầu đánh giá trạng thái này
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         fallDistance = 0;
@@ -21,7 +21,7 @@ public class FallingBehaviour : StateMachineBehaviour
         audioPlayer.Play(CharacterAudio.AudioType.Falling, true);
     }
 
-    // OnStateUpdate được gọi trên mỗi khung Cập nhật giữa các lệnh gọi lại OnStateEnter và OnStateExit
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (lastPositionY > character.transform.position.y)
@@ -32,22 +32,22 @@ public class FallingBehaviour : StateMachineBehaviour
         animator.SetFloat("FallDistance", fallDistance);
     }
 
-    // OnStateExit được gọi khi quá trình chuyển đổi kết thúc và máy trạng thái hoàn tất việc đánh giá trạng thái này
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         audioPlayer.Play(CharacterAudio.AudioType.Falling, false);
     }
 
-    // OnStateMove được gọi ngay sau Animator.OnAnimatorMove()
-    //ghi đè public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // OnStateMove is called right after Animator.OnAnimatorMove()
+    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
-    // Triển khai mã xử lý và ảnh hưởng đến chuyển động của gốc
+    // Implement code that processes and affects root motion
     //}
 
-    // OnStateIK được gọi ngay sau Animator.OnAnimatorIK()
-    //ghi đè public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // OnStateIK is called right after Animator.OnAnimatorIK()
+    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
-    // Triển khai mã thiết lập IK hoạt ảnh (động học ngược)
+    //    // Implement code that sets up animation IK (inverse kinematics)
     //}
 
     public void ResetAllParams()

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class VolumeUI : MonoBehaviour
 {
-    public Slider[] Sliders; // thanh trượt
+    public Slider[] Sliders; //滑块集合
     public int[] minVolume;
     public Text[] volText;
     public CanvasGroup mainCanvasGroup;
