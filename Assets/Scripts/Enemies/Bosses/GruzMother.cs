@@ -209,14 +209,14 @@ public class GruzMother : Enemy
             }
         }
 
-        // Số lần va chạm được đặt lại về 0
+        // 冲撞次数归零
         crashCount = 0;
-        // số lần va chạm
+        // 冲撞计数
         crashCount++;
-        // Đặt điểm đến
+        // 设定目的地
         agent.SetDestination(crashPoints[currentCrashPoint].position);
         agent.maxSpeed = 50;
-        // Trình tự va chạm được xác định dựa trên vị trí tương đối trục hoành của nhân vật.
+        // 根据角色横轴相对方位，决定冲撞顺序
         if (player.position.x > transform.position.x)
         {
             isDesc = false;
@@ -243,7 +243,7 @@ public class GruzMother : Enemy
             SwitchState(EnemyState.FLY);
             return;
         }
-        // Xác định điểm va chạm tiếp theo theo thứ tự hoặc thứ tự ngược lại
+        // 根据顺序或倒序决定下次冲撞点
         if (isDesc)
         {
             currentCrashPoint--;
@@ -282,7 +282,7 @@ public class GruzMother : Enemy
         }
         animator.SetTrigger("Attack");
         effectAudio.PlayOneShot(wallHit);
-        // Hiệu ứng rung ảnh
+        // 抖动相机
         CameraShake();
         isHitWall = true;
     }
@@ -340,7 +340,7 @@ public class GruzMother : Enemy
 
     void Flip()
     {
-        // Hiệu ứng lật
+        // 翻转图像
         Vector3 vector = transform.localScale;
         vector.x = vector.x * -1;
         transform.localScale = vector;
@@ -380,7 +380,7 @@ public class GruzMother : Enemy
 
     public void CameraShake()
     {
-        // hiệu ứng rung máy.
+        // 相机震动
         var shakePreset = ProCamera2DShake.Instance.ShakePresets[2];
         ProCamera2DShake.Instance.Shake(shakePreset);
     }
@@ -489,13 +489,11 @@ public class GruzMother : Enemy
     protected override void DetectCollisionEnter2D(Collision2D collision)
     {
         // Nếu bạn va chạm với kẻ thù
-            // - Gây sát thương cho nhân vật.
-            // - Kích hoạt hiệu ứng tạm dừng (HitPause) để tạo cảm giác va chạm mạnh mẽ hơn.
         if (collision.gameObject.layer == LayerMask.NameToLayer("Hero Detector"))
         {
-        // Khi nhân vật đã chết và va chạm với địa hình:
-            // - Vô hiệu hóa ảnh hưởng vật lý và collider.
-            // - Kích hoạt animation "DeadOnGround".
+        // Xử lý khi nhân vật hoặc kẻ thù nhận sát thương.
+        // Kích hoạt hiệu ứng dừng game tạm thời (hit-stop) khi có va chạm liên quan đến sát thương.
+        // Xử lý logic khi nhân vật hoặc kẻ thù đã chết và va chạm với mặt đất, chẳng hạn ngừng tương tác vật lý và kích hoạt hiệu ứng chết.
             StartCoroutine(character.TakeDamage(this));
             FindObjectOfType<HitPause>().Stop(0.5f);
         }

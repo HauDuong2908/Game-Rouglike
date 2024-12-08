@@ -99,7 +99,7 @@ public class Fly : Enemy
     private void EnterHurtState()
     {
         hit.PlayHitAnimation();
-        // Hiệu ứng âm thanh sát thương
+        // 播放受伤音效
         audioPlayer.PlayOneShot(enemyDamage);
         SwitchState(EnemyState.IDLE);
     }
@@ -161,7 +161,7 @@ public class Fly : Enemy
 
     void Flip()
     {
-        // Hiệu ứng Flip
+        // 翻转图像
         Vector3 vector = transform.localScale;
         vector.x *= -1;
         transform.localScale = vector;

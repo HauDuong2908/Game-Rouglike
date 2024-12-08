@@ -49,7 +49,7 @@ public class Buzzer : Enemy
 
     void Flip()
     {
-        // hiệu ứng lật hình ảnh
+        // Hiệu ứng lật
         Vector3 vector = transform.localScale;
         vector.x = vector.x * -1;
         transform.localScale = vector;
@@ -179,9 +179,10 @@ public class Buzzer : Enemy
     }
     private void EnterHurtState()
     {
-        // Hiển thị animation nhận sát thương.
         hit.PlayHitAnimation();
-        // Xác định hướng của người chơi so với đối tượng.
+        // Đoạn mã này chủ yếu xử lý logic cho trạng thái bị thương của một đối tượng trong game, bao gồm:
+        // Phát hiệu ứng và hoạt ảnh bị thương.
+        // Ngừng di chuyển hiện tại và áp dụng một lực đẩy để đối tượng lùi lại, tạo hiệu ứng vật lý phù hợp với vị trí của người chơi.
         Vector2 vector = transform.position - player.position;
         animator.SetTrigger("Hurt");
         rb.velocity = Vector2.zero;

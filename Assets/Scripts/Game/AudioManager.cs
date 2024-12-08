@@ -23,13 +23,13 @@ public class AudioManager : MonoBehaviour
     public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("MasterVolume", volume);
-        // MasterVolume hiển thị thông số của Master
+        // MasterVolume为我们暴露出来的Master的参数
     }
 
     public void SetSoundVolume(float volume)
     {
         audioMixer.SetFloat("SoundVolume", volume);
-        // MusicVolume hiển thị các thông số MusicVolume
+        // MusicVolume为我们暴露出来的Music的参数
     }
 
     public void SetMusicVolume(float volume)
