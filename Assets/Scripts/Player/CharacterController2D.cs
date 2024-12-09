@@ -11,7 +11,7 @@ public class CharacterController2D : MonoBehaviour
 
     private Rigidbody2D controllerRigidbody;
 
-    [Header("Quản lý chung player")]
+    [Header("依赖脚本")]
     [SerializeField] Animator animator = null;
     [SerializeField] CharacterAudio audioEffectPlayer = null;
     [SerializeField] CharacterAttack attacker = null;
@@ -20,7 +20,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] AudioSource audioMusicPlayer = null;
     [SerializeField] GameManager gameManager = null;
 
-    [Header("Check State")]
+    [Header("移动参数")]
     [SerializeField] float maxSpeed = 0.0f;
     [SerializeField] float jumpForce = 0.0f;
     [SerializeField] float wallJumpForce = 0.0f;
@@ -34,7 +34,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float slidingGravityScale = 1.0f;
     [SerializeField] float groundedGravityScale = 1.0f;
 
-    [Header("Ground")]
+    [Header("层级")]
     [SerializeField] LayerMask whatIsOnGround;
 
     private Vector2 vectorInput;
@@ -42,13 +42,13 @@ public class CharacterController2D : MonoBehaviour
     private bool enableGravity;
     private int jumpCount;
 
-    [Header("Thông số chiến đấu")]
-    [Tooltip("thời gian kết hợp")]
+    [Header("战斗参数")]
+    [Tooltip("连击时间")]
     [SerializeField] float maxComboDelay = 0.4f;
-    [Tooltip("Khoảng thời gian tấn công")]
+    [Tooltip("攻击按键间隔时间")]
     [SerializeField] float slashIntervalTime = 0.2f;
 
-    [Header("Slash Attack")]
+    [Header("攻击数值参数")]
     [SerializeField] int slashDamage;
 
     private int slashCount;
@@ -60,7 +60,7 @@ public class CharacterController2D : MonoBehaviour
     private bool isSliding;
     private bool isFalling;
 
-    [Header("Other")]
+    [Header("其他参数")]
     [SerializeField] private bool firstLanding;
 
     private int animatorFristLandingBool;
@@ -194,7 +194,7 @@ public class CharacterController2D : MonoBehaviour
                 {
                     return;
                 }
-                // 
+                // 跳跃键被按下
                 jumpInput = true;
             }
         }

@@ -14,29 +14,29 @@ TagManager:
   - 
   - 
   - Terrain
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - RealTerrainDetector
+  - Enemies
+  - Projectiles
   - Hero Detector
-  - 
+  - Terrain Detector
   - Enemy Detector
-  - 
-  - 
+  - Tinker
+  - Attack
   - Particle
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Interactive Object
+  - Hero Box
+  - Grass
+  - Enemy Attack
+  - Damage All
+  - Bouncer
   - Soft Terrain
-  - 
-  - 
-  - 
+  - Corpse
+  - uGUI
+  - Hero Only
   - GeoDetector
-  - 
-  - 
+  - Geo
+  - Stalactite
   m_SortingLayers:
   - name: Default
     uniqueID: 0

@@ -107,7 +107,7 @@ public class Crawler : Enemy
     public override void Hurt(int damage, Transform attackPosition)
     {
         base.Hurt(damage, attackPosition);
-        // 受伤动画
+        // hoạt hình bị thương
         Vector2 vector = transform.position - attackPosition.position;
         StartCoroutine(DelayHurt(vector));
         hit.PlayHitAnimation();
@@ -115,7 +115,7 @@ public class Crawler : Enemy
 
     IEnumerator DelayHurt(Vector2 vector)
     {
-        // 播放打击声音
+        // Xử lý âm thanh khi va chạm Envoiment
         audioPlayer.PlayOneShot(hited);
         rb.velocity = Vector2.zero;
         forceMovement = false;

@@ -488,10 +488,12 @@ public class GruzMother : Enemy
 
     protected override void DetectCollisionEnter2D(Collision2D collision)
     {
-        // 如果碰撞到敌人
+        // Nếu bạn va chạm với kẻ thù
         if (collision.gameObject.layer == LayerMask.NameToLayer("Hero Detector"))
         {
-            // 无敌状态，屏蔽碰撞执行语句
+        // Xử lý khi nhân vật hoặc kẻ thù nhận sát thương.
+        // Kích hoạt hiệu ứng dừng game tạm thời (hit-stop) khi có va chạm liên quan đến sát thương.
+        // Xử lý logic khi nhân vật hoặc kẻ thù đã chết và va chạm với mặt đất, chẳng hạn ngừng tương tác vật lý và kích hoạt hiệu ứng chết.
             StartCoroutine(character.TakeDamage(this));
             FindObjectOfType<HitPause>().Stop(0.5f);
         }
