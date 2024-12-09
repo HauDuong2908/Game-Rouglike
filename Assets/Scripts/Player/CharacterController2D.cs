@@ -11,7 +11,7 @@ public class CharacterController2D : MonoBehaviour
 
     private Rigidbody2D controllerRigidbody;
 
-    [Header("依赖脚本")]
+    [Header("Add Script Knight")]
     [SerializeField] Animator animator = null;
     [SerializeField] CharacterAudio audioEffectPlayer = null;
     [SerializeField] CharacterAttack attacker = null;
@@ -20,7 +20,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] AudioSource audioMusicPlayer = null;
     [SerializeField] GameManager gameManager = null;
 
-    [Header("移动参数")]
+    [Header("Trạng Thái Kinght")]
     [SerializeField] float maxSpeed = 0.0f;
     [SerializeField] float jumpForce = 0.0f;
     [SerializeField] float wallJumpForce = 0.0f;
@@ -34,7 +34,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float slidingGravityScale = 1.0f;
     [SerializeField] float groundedGravityScale = 1.0f;
 
-    [Header("层级")]
+    [Header("Check Laymark")]
     [SerializeField] LayerMask whatIsOnGround;
 
     private Vector2 vectorInput;
@@ -42,13 +42,13 @@ public class CharacterController2D : MonoBehaviour
     private bool enableGravity;
     private int jumpCount;
 
-    [Header("战斗参数")]
-    [Tooltip("连击时间")]
+    [Header("Thông số chiến đấu")]
+    [Tooltip("thời gian giữa các đòn combo")]
     [SerializeField] float maxComboDelay = 0.4f;
-    [Tooltip("攻击按键间隔时间")]
+    [Tooltip("khoảng thời gian giữa các lần nhấn phím tấn công")]
     [SerializeField] float slashIntervalTime = 0.2f;
 
-    [Header("攻击数值参数")]
+    [Header("tham số giá trị tấn công")]
     [SerializeField] int slashDamage;
 
     private int slashCount;
@@ -60,7 +60,7 @@ public class CharacterController2D : MonoBehaviour
     private bool isSliding;
     private bool isFalling;
 
-    [Header("tham so")]
+    [Header("Thông số")]
     [SerializeField] private bool firstLanding;
 
     private int animatorFristLandingBool;
@@ -194,7 +194,7 @@ public class CharacterController2D : MonoBehaviour
                 {
                     return;
                 }
-                // 跳跃键被按下
+                // phím nhảy đã được nhấn
                 jumpInput = true;
             }
         }
