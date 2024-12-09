@@ -130,22 +130,28 @@ public class Fly : Enemy
 
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+private void OnCollisionStay2D(Collision2D collision)
+{
+    if (Time.time > lastFlipTime + flipIntervalTime)
     {
-        if (Time.time > lastFlipTime + flipIntervalTime)
-        {
-            lastFlipTime = Time.time;
+        lastFlipTime = Time.time;
 
-            if (collision.contacts[0].normal.y != 0)
-            {
-                movementVerticalSpeed *= -1;
-            }
-            else if (collision.contacts[0].normal == Vector2.right || collision.contacts[0].normal == Vector2.left)
-            {
-                Flip();
-            }
+        // Lấy vector pháp tuyến đầu tiên của va chạm
+        Vector2 normal = collision.contacts[0].normal;
+
+        // Kiểm tra va chạm trên/dưới
+        if (Mathf.Abs(normal.y) > Mathf.Abs(normal.x))
+        {
+            movementVerticalSpeed *= -1;
+        }
+        // Kiểm tra va chạm trái/phải
+        else
+        {
+            Flip();
         }
     }
+}
+
 
     private void Movement()
     {
