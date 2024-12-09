@@ -60,7 +60,7 @@ public class CharacterController2D : MonoBehaviour
     private bool isSliding;
     private bool isFalling;
 
-    [Header("其他参数")]
+    [Header("tham so")]
     [SerializeField] private bool firstLanding;
 
     private int animatorFristLandingBool;
@@ -236,7 +236,7 @@ public class CharacterController2D : MonoBehaviour
         }
         else
         {
-            // 如果下方碰撞到地形，则跳跃已完成，人物已在地面上
+            // Check Ground
             if ((collision.gameObject.layer == LayerMask.NameToLayer("Terrain") || collision.gameObject.layer == LayerMask.NameToLayer("Soft Terrain"))
                 && collision.contacts[0].normal == Vector2.up
                 && !isOnGround)
@@ -247,7 +247,7 @@ public class CharacterController2D : MonoBehaviour
                 isFalling = false;
                 effecter.DoEffect(CharacterEffect.EffectType.FallTrail, true);
             }
-            // 如果上方碰撞到地形，则取消长按跳跃
+            // If you collide with the terrain above, then cancel the jump key.
             else if ((collision.gameObject.layer == LayerMask.NameToLayer("Terrain")
                 || collision.gameObject.layer == LayerMask.NameToLayer("Soft Terrain"))
                 && collision.contacts[0].normal == Vector2.down && isJumping)
@@ -411,7 +411,7 @@ public class CharacterController2D : MonoBehaviour
                 }
                 else
                 {
-                    // 如果垂直方向键没有被按下
+                    // If the vertical navigation key is not pressed down.
                     slashCount++;
                     switch (slashCount)
                     {
@@ -448,7 +448,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
     /// <summary>
-    /// 检测范围并攻击
+    /// Check the scope and attack.
     /// </summary>
     private void SlashAndDetect(CharacterAttack.AttackType attackType)
     {
@@ -456,7 +456,7 @@ public class CharacterController2D : MonoBehaviour
         attacker.Play(attackType, ref colliders);
         bool hasEnemy = false;
         bool hasDamageAll = false;
-        // 检测是否攻击到敌人
+        // Check if it is possible to attack the enemy.
         foreach (Collider2D c in colliders)
         {
             if (c.gameObject.layer == LayerMask.NameToLayer("Enemy Detector"))
@@ -465,7 +465,7 @@ public class CharacterController2D : MonoBehaviour
                 break;
             }
         }
-        // 检测是否攻击到陷阱
+        // Check if there has been an attack on the trap.
         foreach (Collider2D c in colliders)
         {
             if (c.gameObject.layer == LayerMask.NameToLayer("Damage All"))
@@ -525,7 +525,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
     /// <summary>
-    /// 受到伤害
+    /// Hurt
     /// </summary>
     /// <param name="enemy"></param>
     /// <returns></returns>
