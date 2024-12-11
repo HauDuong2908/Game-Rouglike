@@ -53,7 +53,7 @@ public class BattleGate : MonoBehaviour
 
     public void CameraShake()
     {
-        // Camera Shake là hiệu ứng làm rung lắc camera để tạo cảm giác mạnh mẽ, sinh động cho người chơi
+        // 相机震动
         var shakePreset = ProCamera2DShake.Instance.ShakePresets[0];
         ProCamera2DShake.Instance.Shake(shakePreset);
     }

@@ -7,7 +7,7 @@ public class FlyBehaviour : StateMachineBehaviour
     Transform player;
     GruzMother boss;
 
-    // OnStateEnter được gọi khi quá trình chuyển đổi bắt đầu và máy trạng thái bắt đầu đánh giá trạng thái này
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -20,18 +20,19 @@ public class FlyBehaviour : StateMachineBehaviour
 
     }
 
-    // OnStateExit được gọi khi một quá trình chuyển đổi kết thúc và máy trạng thái hoàn tất việc đánh giá trạng thái này
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
     //    
     //}
 
-    // OnStateMove được gọi ngay sau Animator.OnAnimatorMove()
+    // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
     //    // Implement code that processes and affects root motion
     //}
 
-    // OnStateIK được gọi ngay sau Animator.OnAnimatorIK()
+    // OnStateIK is called right after Animator.OnAnimatorIK()
     //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
