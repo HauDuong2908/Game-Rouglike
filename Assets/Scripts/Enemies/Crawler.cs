@@ -98,7 +98,7 @@ public class Crawler : Enemy
 
     void Flip()
     {
-        // 翻转图像
+        // Hiệu ứng lật
         Vector3 vector = transform.localScale;
         vector.x = vector.x * -1;
         transform.localScale = vector;
