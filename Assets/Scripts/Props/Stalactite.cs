@@ -42,8 +42,7 @@ public class Stalactite : Breakable
         if (canHurt && collision.gameObject.layer == LayerMask.NameToLayer("Hero Detector"))
         {
             canHurt = false;
-            // khi nhân vật ở trạng thái vô địch, sẽ tắt hoặc ngừng xử lý va chạm giữa nhân vật và 
-            // các đối tượng khác trong game
+            // 无敌状态，屏蔽碰撞执行语句
             StartCoroutine(character.TakeDamage());
             FindObjectOfType<HitPause>().Stop(0.5f);
         }
