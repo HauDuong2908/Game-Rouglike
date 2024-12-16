@@ -321,7 +321,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             for (int i = 0; i < nodesCount; i++)
             {
                 var oldPos = proCamera2DRails.RailNodes[i];
-                var fmh_326_34_638689956288764216 = Quaternion.identity; var newPos = Handles.FreeMoveHandle(
+                var fmh_326_34_638700005833328448 = Quaternion.identity; var newPos = Handles.FreeMoveHandle(
                                  oldPos,
                                  handleSize,
                                  pointSnap,

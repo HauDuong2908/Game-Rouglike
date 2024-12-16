@@ -53,7 +53,7 @@ public class BattleGate : MonoBehaviour
 
     public void CameraShake()
     {
-        // 相机震动
+        // Hiệu ứng Rung Máy.
         var shakePreset = ProCamera2DShake.Instance.ShakePresets[0];
         ProCamera2DShake.Instance.Shake(shakePreset);
     }

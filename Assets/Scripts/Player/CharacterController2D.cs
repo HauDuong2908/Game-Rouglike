@@ -11,7 +11,7 @@ public class CharacterController2D : MonoBehaviour
 
     private Rigidbody2D controllerRigidbody;
 
-    [Header("Add Script Knight")]
+    [Header("依赖脚本")]
     [SerializeField] Animator animator = null;
     [SerializeField] CharacterAudio audioEffectPlayer = null;
     [SerializeField] CharacterAttack attacker = null;
@@ -20,7 +20,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] AudioSource audioMusicPlayer = null;
     [SerializeField] GameManager gameManager = null;
 
-    [Header("Trạng Thái Kinght")]
+    [Header("移动参数")]
     [SerializeField] float maxSpeed = 0.0f;
     [SerializeField] float jumpForce = 0.0f;
     [SerializeField] float wallJumpForce = 0.0f;
@@ -34,7 +34,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float slidingGravityScale = 1.0f;
     [SerializeField] float groundedGravityScale = 1.0f;
 
-    [Header("Check Laymark")]
+    [Header("层级")]
     [SerializeField] LayerMask whatIsOnGround;
 
     private Vector2 vectorInput;
@@ -42,13 +42,13 @@ public class CharacterController2D : MonoBehaviour
     private bool enableGravity;
     private int jumpCount;
 
-    [Header("Thông số chiến đấu")]
-    [Tooltip("thời gian giữa các đòn combo")]
+    [Header("Thông số Attack")]
+    [Tooltip("Thời Gian")]
     [SerializeField] float maxComboDelay = 0.4f;
-    [Tooltip("khoảng thời gian giữa các lần nhấn phím tấn công")]
+    [Tooltip("Time Delay")]
     [SerializeField] float slashIntervalTime = 0.2f;
 
-    [Header("tham số giá trị tấn công")]
+    [Header("Tấn công")]
     [SerializeField] int slashDamage;
 
     private int slashCount;
@@ -60,7 +60,7 @@ public class CharacterController2D : MonoBehaviour
     private bool isSliding;
     private bool isFalling;
 
-    [Header("Thông số")]
+    [Header("Các thông số khác")]
     [SerializeField] private bool firstLanding;
 
     private int animatorFristLandingBool;
@@ -194,7 +194,7 @@ public class CharacterController2D : MonoBehaviour
                 {
                     return;
                 }
-                // phím nhảy đã được nhấn
+                // Phím nhảy được nhấn
                 jumpInput = true;
             }
         }
@@ -236,7 +236,7 @@ public class CharacterController2D : MonoBehaviour
         }
         else
         {
-            // Check Ground
+            // Nếu phía dưới va chạm với địa hình, bước nhảy hoàn thành và nhân vật ở trên mặt đất
             if ((collision.gameObject.layer == LayerMask.NameToLayer("Terrain") || collision.gameObject.layer == LayerMask.NameToLayer("Soft Terrain"))
                 && collision.contacts[0].normal == Vector2.up
                 && !isOnGround)
@@ -247,7 +247,7 @@ public class CharacterController2D : MonoBehaviour
                 isFalling = false;
                 effecter.DoEffect(CharacterEffect.EffectType.FallTrail, true);
             }
-            // If you collide with the terrain above, then cancel the jump key.
+            // Nếu đỉnh va chạm với địa hình, thao tác nhấn và giữ để nhảy sẽ bị hủy.
             else if ((collision.gameObject.layer == LayerMask.NameToLayer("Terrain")
                 || collision.gameObject.layer == LayerMask.NameToLayer("Soft Terrain"))
                 && collision.contacts[0].normal == Vector2.down && isJumping)
@@ -411,7 +411,7 @@ public class CharacterController2D : MonoBehaviour
                 }
                 else
                 {
-                    // If the vertical navigation key is not pressed down.
+                    // Nếu không nhấn phím SS
                     slashCount++;
                     switch (slashCount)
                     {
@@ -448,7 +448,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
     /// <summary>
-    /// Check the scope and attack.
+    /// Phát hiện phạm vi và tấn công
     /// </summary>
     private void SlashAndDetect(CharacterAttack.AttackType attackType)
     {
@@ -456,7 +456,7 @@ public class CharacterController2D : MonoBehaviour
         attacker.Play(attackType, ref colliders);
         bool hasEnemy = false;
         bool hasDamageAll = false;
-        // Check if it is possible to attack the enemy.
+        // Phát hiện xem kẻ địch có bị tấn công hay không
         foreach (Collider2D c in colliders)
         {
             if (c.gameObject.layer == LayerMask.NameToLayer("Enemy Detector"))
@@ -465,7 +465,7 @@ public class CharacterController2D : MonoBehaviour
                 break;
             }
         }
-        // Check if there has been an attack on the trap.
+        // Phát hiện xem bẫy có bị tấn công hay không
         foreach (Collider2D c in colliders)
         {
             if (c.gameObject.layer == LayerMask.NameToLayer("Damage All"))
@@ -525,7 +525,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
     /// <summary>
-    /// Hurt
+    /// Gây Damege
     /// </summary>
     /// <param name="enemy"></param>
     /// <returns></returns>

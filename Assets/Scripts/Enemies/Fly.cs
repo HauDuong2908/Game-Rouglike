@@ -99,7 +99,7 @@ public class Fly : Enemy
     private void EnterHurtState()
     {
         hit.PlayHitAnimation();
-        // Xử lý âm thanh khi va chạm Envoiment
+        // 播放受伤音效
         audioPlayer.PlayOneShot(enemyDamage);
         SwitchState(EnemyState.IDLE);
     }
@@ -130,28 +130,22 @@ public class Fly : Enemy
 
     }
 
-private void OnCollisionStay2D(Collision2D collision)
-{
-    if (Time.time > lastFlipTime + flipIntervalTime)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        lastFlipTime = Time.time;
-
-        // Lấy vector pháp tuyến đầu tiên của va chạm
-        Vector2 normal = collision.contacts[0].normal;
-
-        // Kiểm tra va chạm trên/dưới
-        if (Mathf.Abs(normal.y) > Mathf.Abs(normal.x))
+        if (Time.time > lastFlipTime + flipIntervalTime)
         {
-            movementVerticalSpeed *= -1;
-        }
-        // Kiểm tra va chạm trái/phải
-        else
-        {
-            Flip();
+            lastFlipTime = Time.time;
+
+            if (collision.contacts[0].normal.y != 0)
+            {
+                movementVerticalSpeed *= -1;
+            }
+            else if (collision.contacts[0].normal == Vector2.right || collision.contacts[0].normal == Vector2.left)
+            {
+                Flip();
+            }
         }
     }
-}
-
 
     private void Movement()
     {
@@ -167,7 +161,7 @@ private void OnCollisionStay2D(Collision2D collision)
 
     void Flip()
     {
-        // Hiệu ứng lật 
+        // 翻转图像
         Vector3 vector = transform.localScale;
         vector.x *= -1;
         transform.localScale = vector;
