@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Game-Rouglike.sln"
+    "dotnet.defaultSolution": "Game_Rouglike.sln"
 }
