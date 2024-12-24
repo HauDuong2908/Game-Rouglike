@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class CharacterData : MonoBehaviour
 {
-    [SerializeField] private int health;
+    [SerializeField] public int health;
     [SerializeField] private bool isDead;
+    
 
     private GameManager gameManager;
     private CharacterEffect effecter;
@@ -85,5 +86,20 @@ public class CharacterData : MonoBehaviour
             animator.ResetTrigger("Dead");
             isDead = false;
         }
+    }
+
+    public void SavePlayer () {
+        saveSystem.savePlayer(this);
+    }
+
+    public void loadPlayer (){
+        playerData data = saveSystem.loadPlayer();
+
+        health = data.health;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
     }
 }
