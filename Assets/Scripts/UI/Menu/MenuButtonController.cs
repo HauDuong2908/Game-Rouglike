@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuButtonController : MonoBehaviour
 {
     public enum MainMenuButton
     {
-        START, OPTIONS, CGREPLAY, QUIT,
+        START, OPTIONS, CONTINUES, QUIT,
     }
     public int index;
     public GameObject saveProfileScreen;
@@ -21,6 +22,8 @@ public class MenuButtonController : MonoBehaviour
     [SerializeField] private int maxIndex;
     private GameSceneManager gameSceneManager;
     private MenuButton[] menuButtons;
+    private Dictionary<MainMenuButton, MenuButton> menuButtonDictionary;
+
 
     private void Awake()
     {
@@ -28,9 +31,24 @@ public class MenuButtonController : MonoBehaviour
     }
 
     void Start()
+{
+    menuButtons = GetComponentsInChildren<MenuButton>();
+    menuButtonDictionary = new Dictionary<MainMenuButton, MenuButton>
     {
-        menuButtons = GetComponentsInChildren<MenuButton>();
+        { MainMenuButton.START, menuButtons[0] },
+        { MainMenuButton.OPTIONS, menuButtons[1] },
+        { MainMenuButton.CONTINUES, menuButtons[2] },
+        { MainMenuButton.QUIT, menuButtons[3] }
+    };
+
+    if (!DataPresistenceManager.instance.HasGameData())
+    {
+        menuButtonDictionary[MainMenuButton.START].interactable = false;
+        menuButtonDictionary[MainMenuButton.CONTINUES].interactable = false;
     }
+
+}
+
 
     private void OnEnable()
     {
@@ -82,10 +100,14 @@ public class MenuButtonController : MonoBehaviour
         switch (index)
         {
             case (int)MenuButtonController.MainMenuButton.START:
-                StartCoroutine(DelayDisplaySaveProfileScreen());
+                // StartCoroutine(DelayDisplaySaveProfileScreen());
+                DataPresistenceManager.instance.NewGame();
+                SceneManager.LoadSceneAsync("Tutorial 01");
                 break;
-            case (int)MenuButtonController.MainMenuButton.CGREPLAY:
-                StartCoroutine(LoadAsyncCGScene());
+            case (int)MenuButtonController.MainMenuButton.CONTINUES:
+                // StartCoroutine(LoadAsyncCGScene());
+                // DataPresistenceManager.instance.LoadGame();
+                SceneManager.LoadSceneAsync("Tutorial 01");
                 break;
             case (int)MenuButtonController.MainMenuButton.OPTIONS:
                 StartCoroutine(DelayDisplayAudioMenu());

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterController2D : MonoBehaviour
+public class CharacterController2D : MonoBehaviour, IDataPresistence
 {
     readonly Vector3 flippedScale = new Vector3(-1, 1, 1);
 
@@ -131,6 +131,14 @@ public class CharacterController2D : MonoBehaviour
     private void Update()
     {
         ResetComboTimer();
+    }
+
+    public void LoadData(GameData data){
+        this.transform.position = data.playerPosition;
+    }
+
+    public void SaveData(GameData data){
+        data.playerPosition = this.transform.position;
     }
 
     void FixedUpdate()
