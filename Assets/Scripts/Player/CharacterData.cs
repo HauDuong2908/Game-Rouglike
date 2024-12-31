@@ -7,6 +7,7 @@ public class CharacterData : MonoBehaviour
 {
     [SerializeField] public int health;
     [SerializeField] private bool isDead;
+     public int deathCount;
     
 
     private GameManager gameManager;
@@ -14,6 +15,16 @@ public class CharacterData : MonoBehaviour
     private Animator animator;
 
     private bool isLeak;
+
+    public void LoadData(GameData data){
+        this.deathCount = data.deathCount;
+        FindObjectOfType<GeoCollector>().LoadGeoData(data);
+    }
+
+    public void SaveData(ref GameData data){
+        data.deathCount = this.deathCount;
+        FindObjectOfType<GeoCollector>().SaveGeoData(ref data);
+    }
 
     private void Start()
     {
@@ -71,6 +82,17 @@ public class CharacterData : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Hero Detector"), LayerMask.NameToLayer("Enemy Detector"), true);
         isDead = true;
         animator.SetTrigger("Dead");
+
+        if (CompareTag("Player"))
+        {
+            GameEventsManager.instance.PlayerDeath();
+            // Reset Geo sau khi player chết
+            GeoCollector geoCollector = FindObjectOfType<GeoCollector>();
+            if (geoCollector != null)
+            {
+                geoCollector.ResetGeo(); // Gọi phương thức reset Geo
+            }
+        }
     }
 
     public void Respawn()
@@ -86,20 +108,5 @@ public class CharacterData : MonoBehaviour
             animator.ResetTrigger("Dead");
             isDead = false;
         }
-    }
-
-    public void SavePlayer () {
-        saveSystem.savePlayer(this);
-    }
-
-    public void loadPlayer (){
-        playerData data = saveSystem.loadPlayer();
-
-        health = data.health;
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        transform.position = position;
-    }
+    }   
 }

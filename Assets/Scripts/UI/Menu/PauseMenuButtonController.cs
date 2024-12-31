@@ -93,6 +93,7 @@ public class PauseMenuButtonController : MonoBehaviour
                 pauseMenu.Resume();
                 break;
             case (int)PauseMenuButtonConstant.SAVE:
+                DataPresistenceManager.instance.SaveGame();
                 pauseMenu.Resume();
                 break;
             case (int)PauseMenuButtonConstant.LOAD:
