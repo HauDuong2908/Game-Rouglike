@@ -11,7 +11,7 @@ public class CharacterController2D : MonoBehaviour
 
     private Rigidbody2D controllerRigidbody;
 
-    [Header("依赖脚本")]
+    [Header("Main")]
     [SerializeField] Animator animator = null;
     [SerializeField] CharacterAudio audioEffectPlayer = null;
     [SerializeField] CharacterAttack attacker = null;
@@ -20,7 +20,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] AudioSource audioMusicPlayer = null;
     [SerializeField] GameManager gameManager = null;
 
-    [Header("移动参数")]
+    [Header("Move")]
     [SerializeField] float maxSpeed = 0.0f;
     [SerializeField] float jumpForce = 0.0f;
     [SerializeField] float wallJumpForce = 0.0f;
@@ -34,7 +34,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float slidingGravityScale = 1.0f;
     [SerializeField] float groundedGravityScale = 1.0f;
 
-    [Header("层级")]
+    [Header("What is on ground")]
     [SerializeField] LayerMask whatIsOnGround;
 
     private Vector2 vectorInput;
