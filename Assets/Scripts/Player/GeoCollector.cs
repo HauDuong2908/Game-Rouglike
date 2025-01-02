@@ -32,6 +32,17 @@ public class GeoCollector : MonoBehaviour
         geoText.text = geoCount.ToString();
     }
 
+    public void SaveGeoData(ref GameData data)
+    {
+        data.geoCount = geoCount;  
+    }
+
+    public void LoadGeoData(GameData data)
+    {
+        geoCount = data.geoCount;  
+        geoText.SetText(geoCount.ToString());
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Geo"))
@@ -45,5 +56,13 @@ public class GeoCollector : MonoBehaviour
             geoText.SetText(geoCount.ToString());
             Destroy(collision.gameObject);
         }
+    }
+
+    public void ResetGeo()
+    {
+        geoCount = 0;  // Đặt lại số lượng Geo về 0
+        PlayerPrefs.SetInt("Geo", geoCount);
+        PlayerPrefs.Save();
+        geoText.SetText(geoCount.ToString());
     }
 }

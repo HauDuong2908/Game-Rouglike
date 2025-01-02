@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterController2D : MonoBehaviour
+public class CharacterController2D : MonoBehaviour, IDataPresistence
 {
     readonly Vector3 flippedScale = new Vector3(-1, 1, 1);
 
     private Rigidbody2D controllerRigidbody;
 
-    [Header("Main")]
+    [Header("Manager")]
+
     [SerializeField] Animator animator = null;
     [SerializeField] CharacterAudio audioEffectPlayer = null;
     [SerializeField] CharacterAttack attacker = null;
@@ -20,7 +21,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] AudioSource audioMusicPlayer = null;
     [SerializeField] GameManager gameManager = null;
 
-    [Header("Move")]
+    [Header("Movement")]
     [SerializeField] float maxSpeed = 0.0f;
     [SerializeField] float jumpForce = 0.0f;
     [SerializeField] float wallJumpForce = 0.0f;
@@ -34,7 +35,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float slidingGravityScale = 1.0f;
     [SerializeField] float groundedGravityScale = 1.0f;
 
-    [Header("What is on ground")]
+    [Header("Check")]
+
     [SerializeField] LayerMask whatIsOnGround;
 
     private Vector2 vectorInput;
@@ -131,6 +133,14 @@ public class CharacterController2D : MonoBehaviour
     private void Update()
     {
         ResetComboTimer();
+    }
+
+    public void LoadData(GameData data){
+        this.transform.position = data.playerPosition;
+    }
+
+    public void SaveData(GameData data){
+        data.playerPosition = this.transform.position;
     }
 
     void FixedUpdate()

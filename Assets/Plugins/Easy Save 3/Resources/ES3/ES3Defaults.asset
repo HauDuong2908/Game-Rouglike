@@ -31,6 +31,7 @@ MonoBehaviour:
     - Assembly-CSharp
     - PsdPlugin
     - PPv2URPConverters
+    - WanzyeeStudio.Runtime
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
