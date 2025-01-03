@@ -12,6 +12,7 @@ public class CharacterController2D : MonoBehaviour, IDataPresistence
     private Rigidbody2D controllerRigidbody;
 
     [Header("Manager")]
+
     [SerializeField] Animator animator = null;
     [SerializeField] CharacterAudio audioEffectPlayer = null;
     [SerializeField] CharacterAttack attacker = null;
@@ -35,6 +36,7 @@ public class CharacterController2D : MonoBehaviour, IDataPresistence
     [SerializeField] float groundedGravityScale = 1.0f;
 
     [Header("Check")]
+
     [SerializeField] LayerMask whatIsOnGround;
 
     private Vector2 vectorInput;
