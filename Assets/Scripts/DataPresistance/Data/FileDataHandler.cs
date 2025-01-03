@@ -45,12 +45,13 @@ public class FileDataHandler
         return loadedData;
     }
 
-    public void Save (GameData data)
+    public void Save(GameData data)
     {
         string fullPath = Path.Combine(dataDirPath, dataFileName);
         try
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+            Debug.Log("Before Save: " + JsonUtility.ToJson(data)); // Log trạng thái trước khi lưu
             string dataToStore = JsonUtility.ToJson(data, true);
             if (useEncryption)
             {
@@ -62,11 +63,14 @@ public class FileDataHandler
                     writer.Write(dataToStore);
                 }
             }
-        }catch(Exception e){
-            Debug.LogError("Error occured when trying to load file at path: " 
-                        + fullPath  + " and backup did not work.\n" + e);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error occurred when trying to save file at path: " 
+                        + fullPath  + "\n" + e);
         }
     }
+
     //mã hóa file save
     private string EncryptDecrypt(string data){
         string modifiedData = "";

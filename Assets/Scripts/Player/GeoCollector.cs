@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class GeoCollector : MonoBehaviour
+public class GeoCollector : MonoBehaviour, IDataPresistence
 {
     [SerializeField] Animator collectEffecter;
     [SerializeField] AudioClip[] geoCollects;
@@ -13,7 +13,6 @@ public class GeoCollector : MonoBehaviour
     [SerializeField] bool needToReset;
 
     private AudioSource audioSource;
-
     private int animationCollectTrigger = Animator.StringToHash("Collect");
 
     private void Awake()
@@ -32,35 +31,54 @@ public class GeoCollector : MonoBehaviour
         geoText.text = geoCount.ToString();
     }
 
-    public void SaveGeoData(ref GameData data)
+    public void LoadData(GameData gameData)
     {
-        data.geoCount = geoCount;  
+        // Cập nhật số lượng Geo đã thu thập từ danh sách
+        geoCount = gameData.geoCollectedList.Count;
+        geoText.SetText(geoCount.ToString());  // Cập nhật UI
+
+        // Đồng bộ trạng thái của tất cả các Geo
+        foreach (var geo in FindObjectsOfType<Geo>())
+        {
+            geo.LoadData(gameData);
+        }
+        Debug.Log($"[GeoCollector] Loaded geoCount: {geoCount}");
     }
 
-    public void LoadGeoData(GameData data)
+    public void SaveData(GameData gameData)
     {
-        geoCount = data.geoCount;  
-        geoText.SetText(geoCount.ToString());
+        // Lưu geoCount vào GameData
+        gameData.geoCount = geoCount;
+
+        // Lưu danh sách các Geo đã thu thập
+        foreach (var geo in FindObjectsOfType<Geo>())
+        {
+            geo.SaveData(gameData);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Geo"))
         {
-            collectEffecter.SetTrigger(animationCollectTrigger);
-            int index = Random.Range(0, geoCollects.Length);
-            audioSource.PlayOneShot(geoCollects[index]);
-            geoCount++;
-            PlayerPrefs.SetInt("Geo", geoCount);
-            PlayerPrefs.Save();
-            geoText.SetText(geoCount.ToString());
-            Destroy(collision.gameObject);
+            Geo geo = collision.gameObject.GetComponent<Geo>();
+            if (geo != null && !geo.IsCollected())
+            {
+                geo.SetCollected(true);
+                Debug.Log($"Geo {collision.gameObject.name} collected.");
+                geoCount++;
+                geoText.SetText(geoCount.ToString());
+                Destroy(collision.gameObject);
+
+                // Gọi SaveGame để lưu dữ liệu
+                FindObjectOfType<DataPresistenceManager>().SaveGame();
+            }
         }
     }
 
     public void ResetGeo()
     {
-        geoCount = 0;  // Đặt lại số lượng Geo về 0
+        geoCount = 0;
         PlayerPrefs.SetInt("Geo", geoCount);
         PlayerPrefs.Save();
         geoText.SetText(geoCount.ToString());
