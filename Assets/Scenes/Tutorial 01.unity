@@ -3075,10 +3075,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5729673492918f43b9c785b8b2b37d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
-  subText: {fileID: 0}
-  mainText: {fileID: 0}
-  bgm: {fileID: 0}
+  canvasGroup: {fileID: 729594068}
+  subText: {fileID: 644377517}
+  mainText: {fileID: 1870597187}
+  bgm: {fileID: 220954398}
   subTitle: "ng\xE3 t\u01B0 b\u1ECB l\xE3ng qu\xEAn"
   mainTitle: "ng\xE3 t\u01B0 b\u1ECB l\xE3ng qu\xEAn"
   speed: 0.02
