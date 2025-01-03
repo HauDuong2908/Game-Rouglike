@@ -16,15 +16,15 @@ public class CharacterData : MonoBehaviour
 
     private bool isLeak;
 
-    public void LoadData(GameData data){
-        this.deathCount = data.deathCount;
-        FindObjectOfType<GeoCollector>().LoadGeoData(data);
-    }
+    // public void LoadData(GameData data){
+    //     this.deathCount = data.deathCount;
+    //   //  FindObjectOfType<GeoCollector>().LoadGeoData(data);
+    // }
 
-    public void SaveData(ref GameData data){
-        data.deathCount = this.deathCount;
-        FindObjectOfType<GeoCollector>().SaveGeoData(ref data);
-    }
+    // public void SaveData(ref GameData data){
+    //     data.deathCount = this.deathCount;
+    //   //  FindObjectOfType<GeoCollector>().SaveGeoData(ref data);
+    // }
 
     private void Start()
     {

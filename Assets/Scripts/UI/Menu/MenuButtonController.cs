@@ -100,13 +100,13 @@ public class MenuButtonController : MonoBehaviour
         switch (index)
         {
             case (int)MenuButtonController.MainMenuButton.START:
-                // StartCoroutine(DelayDisplaySaveProfileScreen());
+                 StartCoroutine(DelayDisplaySaveProfileScreen());
                 DataPresistenceManager.instance.NewGame();
-                SceneManager.LoadSceneAsync("Tutorial 01");
+               // SceneManager.LoadSceneAsync("Tutorial 01");
                 break;
             case (int)MenuButtonController.MainMenuButton.CONTINUES:
                 // StartCoroutine(LoadAsyncCGScene());
-                // DataPresistenceManager.instance.LoadGame();
+                DataPresistenceManager.instance.LoadGame();
                 SceneManager.LoadSceneAsync("Tutorial 01");
                 break;
             case (int)MenuButtonController.MainMenuButton.OPTIONS:

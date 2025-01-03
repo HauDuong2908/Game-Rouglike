@@ -45656,16 +45656,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1394947648161532354, guid: bd589adf448681c498edcb5a89b9ba8a, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 791725216}
+    - target: {fileID: 1394947648161532354, guid: bd589adf448681c498edcb5a89b9ba8a, type: 3}
+      propertyPath: audioMusicPlayer
+      value: 
+      objectReference: {fileID: 1889767164}
+    - target: {fileID: 1394947648161532354, guid: bd589adf448681c498edcb5a89b9ba8a, type: 3}
       propertyPath: whatIsOnGround.m_Bits
       value: 570695936
       objectReference: {fileID: 0}
     - target: {fileID: 1394947648161532358, guid: bd589adf448681c498edcb5a89b9ba8a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.64
+      value: -9.7
       objectReference: {fileID: 0}
     - target: {fileID: 1394947648161532358, guid: bd589adf448681c498edcb5a89b9ba8a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.3
+      value: 41.8
       objectReference: {fileID: 0}
     - target: {fileID: 1394947648161532358, guid: bd589adf448681c498edcb5a89b9ba8a, type: 3}
       propertyPath: m_LocalPosition.z
