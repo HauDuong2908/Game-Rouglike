@@ -133,18 +133,21 @@ public class Fly : Enemy
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (Time.time > lastFlipTime + flipIntervalTime)
-        {
-            lastFlipTime = Time.time;
+    {
+        lastFlipTime = Time.time;
 
-            if (collision.contacts[0].normal.y != 0)
-            {
-                movementVerticalSpeed *= -1;
-            }
-            else if (collision.contacts[0].normal == Vector2.right || collision.contacts[0].normal == Vector2.left)
-            {
-                Flip();
-            }
+        // Lấy hướng va chạm của normal
+        Vector2 normal = collision.contacts[0].normal;
+
+        if (Mathf.Abs(normal.y) > 0.5f) // Va chạm phía trên hoặc dưới
+        {
+            movementVerticalSpeed *= -1;
         }
+        else if (Mathf.Abs(normal.x) > 0.5f) // Va chạm phía trái hoặc phải
+        {
+            Flip();
+        }
+    }
     }
 
     private void Movement()
