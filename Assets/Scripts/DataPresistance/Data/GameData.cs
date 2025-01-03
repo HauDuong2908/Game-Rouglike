@@ -18,4 +18,19 @@ public class GameData
         this.playerPosition = new Vector3(-6.2f, 26.2f, 0);
         geoCollectedList = new List<string>();
     }
+
+    public int GetPercentageComplete(){
+        int totalColleted = 0;
+        foreach (string collected in geoCollectedList){
+            if (!string.IsNullOrEmpty(collected)){
+                totalColleted++;
+            }
+        }
+
+        int percentageCompleted = -1;
+        if(geoCollectedList.Count != 0){
+            percentageCompleted = (totalColleted * 100 / geoCollectedList.Count);
+        }
+        return percentageCompleted;
+    }
 }

@@ -103,6 +103,11 @@ public class CharacterController2D : MonoBehaviour, IDataPresistence
         InputManager.InputControl.GamePlayer.Attack.canceled -= Attack_canceled;
     }
 
+    // private void Awake()
+    // {
+    //     DontDestroyOnLoad(this.gameObject);
+    // }
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -140,7 +145,9 @@ public class CharacterController2D : MonoBehaviour, IDataPresistence
     }
 
     public void SaveData(GameData data){
-        data.playerPosition = this.transform.position;
+        if (this != null) {
+            data.playerPosition = this.transform.position;
+        }
     }
 
     void FixedUpdate()

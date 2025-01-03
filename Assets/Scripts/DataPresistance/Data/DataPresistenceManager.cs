@@ -15,6 +15,7 @@ public class DataPresistenceManager : MonoBehaviour
     private GameData gameData; 
     private List<IDataPresistence> dataPresistenceObject; 
     private FileDataHandler dataHandler; 
+    private string selectedProfileId = "test";
     public static DataPresistenceManager instance { get; private set; } 
 
     private void Awake() {
@@ -52,7 +53,7 @@ public class DataPresistenceManager : MonoBehaviour
     }
 
     public void LoadGame() {
-        this.gameData = dataHandler.load();
+        this.gameData = dataHandler.load(selectedProfileId);
         if (this.gameData == null && initializeDataIfNull){
             NewGame();
         }
@@ -75,7 +76,7 @@ public class DataPresistenceManager : MonoBehaviour
         {
             dataPresistenceObj.SaveData(gameData);
         }
-        dataHandler.Save(gameData);
+        dataHandler.Save(gameData, selectedProfileId);
     }
 
     private void OnApplicationQuit() {
@@ -92,6 +93,11 @@ public class DataPresistenceManager : MonoBehaviour
     public bool HasGameData()
     {
         return gameData != null;
+    }
+
+    public Dictionary<string, GameData> GetAllProfileGameData()
+    {
+        return dataHandler.LoadAllProfiles();
     }
 
 }
