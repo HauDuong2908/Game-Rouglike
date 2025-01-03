@@ -11,11 +11,11 @@ public class DataPresistenceManager : MonoBehaviour
     [SerializeField] private bool initializeDataIfNull = false;
     [Header("File Storage Config")]
     [SerializeField] private String fileName;
-    [SerializeField] private bool useEncryption; // Sử dụng mã hóa hay không
-private GameData gameData; // Dữ liệu trò chơi
-private List<IDataPresistence> dataPresistenceObject; // Danh sách các đối tượng lưu trữ dữ liệu
-private FileDataHandler dataHandler; // Bộ xử lý dữ liệu tệp
-public static DataPresistenceManager instance { get; private set; } // Thể hiện duy nhất của DataPresistenceManager
+    [SerializeField] private bool useEncryption; 
+    private GameData gameData; 
+    private List<IDataPresistence> dataPresistenceObject; 
+    private FileDataHandler dataHandler; 
+    public static DataPresistenceManager instance { get; private set; } 
 
     private void Awake() {
     // if (instance != null) {
