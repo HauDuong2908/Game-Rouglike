@@ -15,7 +15,8 @@ public class GameData
     public GameData() {
         this.deathCount = 0;
         this.geoCount = 0;
-        this.playerPosition = new Vector3(-6.2f, 26.2f, 0);
+        //this.playerPosition = new Vector3(-6.2f, 26.2f, 0);
+        playerPosition = Vector3.zero;
         geoCollectedList = new List<string>();
     }
 
