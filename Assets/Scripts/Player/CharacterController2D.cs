@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterController2D : MonoBehaviour
+public class CharacterController2D : MonoBehaviour, IDataPresistence
 {
     readonly Vector3 flippedScale = new Vector3(-1, 1, 1);
 
     private Rigidbody2D controllerRigidbody;
 
-    [Header("Quản lý chung player")]
+    [Header("Manager")]
+
     [SerializeField] Animator animator = null;
     [SerializeField] CharacterAudio audioEffectPlayer = null;
     [SerializeField] CharacterAttack attacker = null;
@@ -20,7 +21,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] AudioSource audioMusicPlayer = null;
     [SerializeField] GameManager gameManager = null;
 
-    [Header("Check State")]
+    [Header("Movement")]
     [SerializeField] float maxSpeed = 0.0f;
     [SerializeField] float jumpForce = 0.0f;
     [SerializeField] float wallJumpForce = 0.0f;
@@ -34,7 +35,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float slidingGravityScale = 1.0f;
     [SerializeField] float groundedGravityScale = 1.0f;
 
-    [Header("Ground")]
+    [Header("Check")]
+
     [SerializeField] LayerMask whatIsOnGround;
 
     private Vector2 vectorInput;
@@ -42,13 +44,13 @@ public class CharacterController2D : MonoBehaviour
     private bool enableGravity;
     private int jumpCount;
 
-    [Header("Thông số chiến đấu")]
-    [Tooltip("thời gian kết hợp")]
+    [Header("Thông số Attack")]
+    [Tooltip("Thời Gian")]
     [SerializeField] float maxComboDelay = 0.4f;
-    [Tooltip("Khoảng thời gian tấn công")]
+    [Tooltip("Time Delay")]
     [SerializeField] float slashIntervalTime = 0.2f;
 
-    [Header("Slash Attack")]
+    [Header("Tấn công")]
     [SerializeField] int slashDamage;
 
     private int slashCount;
@@ -60,7 +62,7 @@ public class CharacterController2D : MonoBehaviour
     private bool isSliding;
     private bool isFalling;
 
-    [Header("Other")]
+    [Header("Các thông số khác")]
     [SerializeField] private bool firstLanding;
 
     private int animatorFristLandingBool;
@@ -101,6 +103,11 @@ public class CharacterController2D : MonoBehaviour
         InputManager.InputControl.GamePlayer.Attack.canceled -= Attack_canceled;
     }
 
+    // private void Awake()
+    // {
+    //     DontDestroyOnLoad(this.gameObject);
+    // }
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -133,6 +140,16 @@ public class CharacterController2D : MonoBehaviour
         ResetComboTimer();
     }
 
+    public void LoadData(GameData data){
+        this.transform.position = data.playerPosition;
+    }
+
+    public void SaveData(GameData data){
+        if (this != null) {
+            data.playerPosition = this.transform.position;
+        }
+    }
+
     void FixedUpdate()
     {
         UpdateVelocity();
@@ -162,7 +179,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump_started(InputAction.CallbackContext context)
     {
-        Debug.Log("Jump_started");
         if (data.GetDeadStatement())
             return;
         if (isSliding && !isOnGround)
@@ -195,7 +211,7 @@ public class CharacterController2D : MonoBehaviour
                 {
                     return;
                 }
-                // 跳跃键被按下
+                // Phím nhảy được nhấn
                 jumpInput = true;
             }
         }
@@ -203,7 +219,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump_performed(InputAction.CallbackContext context)
     {
-        Debug.Log("Jump_performed");
         JumpCancel();
     }
 
@@ -238,7 +253,7 @@ public class CharacterController2D : MonoBehaviour
         }
         else
         {
-            // 如果下方碰撞到地形，则跳跃已完成，人物已在地面上
+            // Nếu phía dưới va chạm với địa hình, bước nhảy hoàn thành và nhân vật ở trên mặt đất
             if ((collision.gameObject.layer == LayerMask.NameToLayer("Terrain") || collision.gameObject.layer == LayerMask.NameToLayer("Soft Terrain"))
                 && collision.contacts[0].normal == Vector2.up
                 && !isOnGround)
@@ -249,7 +264,7 @@ public class CharacterController2D : MonoBehaviour
                 isFalling = false;
                 effecter.DoEffect(CharacterEffect.EffectType.FallTrail, true);
             }
-            // 如果上方碰撞到地形，则取消长按跳跃
+            // Nếu đỉnh va chạm với địa hình, thao tác nhấn và giữ để nhảy sẽ bị hủy.
             else if ((collision.gameObject.layer == LayerMask.NameToLayer("Terrain")
                 || collision.gameObject.layer == LayerMask.NameToLayer("Soft Terrain"))
                 && collision.contacts[0].normal == Vector2.down && isJumping)
@@ -413,7 +428,7 @@ public class CharacterController2D : MonoBehaviour
                 }
                 else
                 {
-                    // 如果垂直方向键没有被按下
+                    // Nếu không nhấn phím SS
                     slashCount++;
                     switch (slashCount)
                     {
@@ -450,7 +465,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
     /// <summary>
-    /// 检测范围并攻击
+    /// Phát hiện phạm vi và tấn công
     /// </summary>
     private void SlashAndDetect(CharacterAttack.AttackType attackType)
     {
@@ -458,7 +473,7 @@ public class CharacterController2D : MonoBehaviour
         attacker.Play(attackType, ref colliders);
         bool hasEnemy = false;
         bool hasDamageAll = false;
-        // 检测是否攻击到敌人
+        // Phát hiện xem kẻ địch có bị tấn công hay không
         foreach (Collider2D c in colliders)
         {
             if (c.gameObject.layer == LayerMask.NameToLayer("Enemy Detector"))
@@ -467,7 +482,7 @@ public class CharacterController2D : MonoBehaviour
                 break;
             }
         }
-        // 检测是否攻击到陷阱
+        // Phát hiện xem bẫy có bị tấn công hay không
         foreach (Collider2D c in colliders)
         {
             if (c.gameObject.layer == LayerMask.NameToLayer("Damage All"))
@@ -527,7 +542,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
     /// <summary>
-    /// 受到伤害
+    /// Gây Damege
     /// </summary>
     /// <param name="enemy"></param>
     /// <returns></returns>

@@ -32,4 +32,17 @@ public class GameManager : MonoBehaviour
     {
         enableInput = enabled;
     }
+
+    private GameData gameData;
+
+    // public void SaveGame()
+    // {
+    //     saveSystem.savePlayer(gameData);
+    // }
+
+    public GameData GetGameData()
+    {
+        return gameData;
+    }
+    
 }

@@ -5,14 +5,26 @@ using UnityEngine;
 
 public class CharacterData : MonoBehaviour
 {
-    [SerializeField] private int health;
+    [SerializeField] public int health;
     [SerializeField] private bool isDead;
+     public int deathCount;
+    
 
     private GameManager gameManager;
     private CharacterEffect effecter;
     private Animator animator;
 
     private bool isLeak;
+
+    // public void LoadData(GameData data){
+    //     this.deathCount = data.deathCount;
+    //   //  FindObjectOfType<GeoCollector>().LoadGeoData(data);
+    // }
+
+    // public void SaveData(ref GameData data){
+    //     data.deathCount = this.deathCount;
+    //   //  FindObjectOfType<GeoCollector>().SaveGeoData(ref data);
+    // }
 
     private void Start()
     {
@@ -70,6 +82,17 @@ public class CharacterData : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Hero Detector"), LayerMask.NameToLayer("Enemy Detector"), true);
         isDead = true;
         animator.SetTrigger("Dead");
+
+        if (CompareTag("Player"))
+        {
+            GameEventsManager.instance.PlayerDeath();
+            // Reset Geo sau khi player chết
+            GeoCollector geoCollector = FindObjectOfType<GeoCollector>();
+            if (geoCollector != null)
+            {
+                geoCollector.ResetGeo(); // Gọi phương thức reset Geo
+            }
+        }
     }
 
     public void Respawn()
@@ -85,5 +108,5 @@ public class CharacterData : MonoBehaviour
             animator.ResetTrigger("Dead");
             isDead = false;
         }
-    }
+    }   
 }

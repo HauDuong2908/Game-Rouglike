@@ -20,8 +20,19 @@ public class OpeningSequence : MonoBehaviour
 
     private void Start()
     {
+        // Debugging: Kiểm tra và đảm bảo VideoPlayer đã được cấu hình đúng
+        CheckVideoPlayer(prologue, "Prologue");
+        CheckVideoPlayer(intro, "Intro");
+
         prologue.loopPointReached += ProloguePlayer_loopPointReached;
         intro.loopPointReached += IntroPlayer_loopPointReached;
+        
+        // Nếu chưa chuẩn bị, hãy chuẩn bị trước khi phát.
+        if (!intro.isPrepared)
+        {
+            Debug.Log("Preparing intro video...");
+            intro.Prepare();
+        }
     }
 
     public void PlayPrologue()
@@ -42,6 +53,10 @@ public class OpeningSequence : MonoBehaviour
         UpdateAnyKeyTipCounter();
         ResetAnyKeyTip();
         crossFader.FadeIn();
+
+        // Debugging: Kiểm tra video đã sẵn sàng và đang phát đúng cách
+        Debug.Log($"Intro video playback completed. Is video prepared: {intro.isPrepared}");
+        
         if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
@@ -62,4 +77,31 @@ public class OpeningSequence : MonoBehaviour
         anyKeyTip.ResetAnyKeyTip();
     }
 
+    // Hàm kiểm tra VideoPlayer
+    private void CheckVideoPlayer(VideoPlayer player, string videoName)
+    {
+        if (player == null)
+        {
+            Debug.LogError($"{videoName} VideoPlayer is missing!");
+            return;
+        }
+
+        if (!player.isPrepared)
+        {
+            Debug.LogWarning($"{videoName} is not prepared yet.");
+        }
+        else
+        {
+            Debug.Log($"{videoName} is prepared and ready to play.");
+        }
+
+        // Kiểm tra RenderMode và TargetTexture
+        Debug.Log($"{videoName} RenderMode: {player.renderMode}");
+        Debug.Log($"{videoName} TargetTexture: {player.targetTexture}");
+
+        if (player.renderMode != VideoRenderMode.RenderTexture || player.targetTexture == null)
+        {
+            Debug.LogError($"{videoName} is not set to use a RenderTexture correctly!");
+        }
+    }
 }

@@ -7,7 +7,7 @@ public class PauseMenuButtonController : MonoBehaviour
 {
     public enum PauseMenuButtonConstant
     {
-        RESUME, OPTIONS, BACKTOMENU,
+        RESUME, OPTIONS, BACKTOMENU, SAVE, LOAD
     }
     public int index;
 
@@ -90,6 +90,13 @@ public class PauseMenuButtonController : MonoBehaviour
                 break;
             case (int)PauseMenuButtonConstant.BACKTOMENU:
                 SceneManager.LoadSceneAsync(1);
+                pauseMenu.Resume();
+                break;
+            case (int)PauseMenuButtonConstant.SAVE:
+                DataPresistenceManager.instance.SaveGame();
+                pauseMenu.Resume();
+                break;
+            case (int)PauseMenuButtonConstant.LOAD:
                 pauseMenu.Resume();
                 break;
         }

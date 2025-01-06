@@ -5,33 +5,21 @@ using UnityEngine;
 public class BuzzerHurtBehaviour : StateMachineBehaviour
 {
     Buzzer buzzer;
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    // OnStateEnter được gọi khi quá trình chuyển đổi bắt đầu và máy trạng thái bắt đầu đánh giá trạng thái này
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         buzzer = animator.GetComponent<Buzzer>();
     }
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    // OnStateUpdate được gọi trên mỗi khung Cập nhật giữa các lệnh gọi lại OnStateEnter và OnStateExit
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    // OnStateExit được gọi khi quá trình chuyển đổi kết thúc và máy trạng thái kết thúc việc đánh giá trạng thái này
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         buzzer.SwitchState(Buzzer.EnemyState.PATHFINDING);
     }
 
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
+    // OnStateMove được gọi ngay sau Animator.OnAnimatorMove()
 
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
+    // OnStateIK được gọi ngay sau Animator.OnAnimatorIK()
 }
